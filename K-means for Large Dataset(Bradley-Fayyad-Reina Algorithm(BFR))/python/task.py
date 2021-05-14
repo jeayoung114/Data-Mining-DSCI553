@@ -123,7 +123,6 @@ if __name__ == '__main__':
     random_data_0 = random_data.filter(lambda x: x[1] == 0).map(lambda x: x[0])
     Round = 1
     dim = len(random_data_0.take(1)[0]) - 2
-    #     print("num_round : " , len(random_data_0.collect()))
 
     # Step 2. Run K-Means (e.g., from sklearn) with a large K (e.g., 5 times of the number of the input clusters) on the data in memory using the Euclidean distance as the similarity measurement.
 
@@ -161,7 +160,6 @@ if __name__ == '__main__':
     SUMSQ = c.map(lambda x: (x[0], [feature ** 2 for feature in x[1]])) \
         .reduceByKey(lambda a, b: [a[i] + b[i] for i in range(len(a))]).collect()
 
-    #     print("Duration : ", time.time()-t)
 
     # The initialization of DS has finished, so far, you have K numbers of DS clusters (from Step 5) and some numbers of RS (from Step 3).
     # Step 6. Run K-Means on the points in the RS with a large K (e.g., 5 times of the number of the input clusters) to generate CS (clusters with more than one points) and RS (clusters with only one point).
@@ -356,16 +354,13 @@ if __name__ == '__main__':
             "Round {}: ".format(Round) + str(sum([cluster[1] for cluster in N])) + "," + str(len(CS)) + "," + str(
                 sum(list(dict(N_CS).values()))) + "," + str(len(RS)) + "\n")
 
-        # print("Round {}:".format(Round), sum([cluster[1] for cluster in N]), ",", len(CS), ",",
-        #       sum(list(dict(N_CS).values())), ",", len(RS))
-    #         print("num_res : ",  len(result)+sum(list(dict(N_CS).values()))+len(RS))
-    #     print("Round {}: ".format(Round), len(result), "\n")
+
         for row in RS:
             result[int(row[0])] = -1
         for key in CS:
             for row in CS[key]:
                 result[int(row[0])] = -1
-        # print("Round {}: ".format(Round), len(result), "\n")
+
 
     file.write("\n")
     file.write("The clustering results:\n")
