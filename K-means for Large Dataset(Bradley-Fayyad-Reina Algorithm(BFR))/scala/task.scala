@@ -504,8 +504,6 @@ object task {
       }
       var CS_swap = CS.map(_.swap)
 
-//      println("Round %d: ".format(round) + ds.size.toString + "," + CS_swap.keys.toSet.size.toString + "," + CS.size.toString + "," + RS.size.toString + '\n')
-//      println("Round %d: ".format(round) + n_DS.toString + "," + CS_swap.keys.toSet.size.toString + "," + CS.size.toString + "," + RS_count.toString + '\n')
       bw.write("Round %d: ".format(round) + ds.size.toString + "," + CS_swap.keys.toSet.size.toString + "," + CS.size.toString + "," + RS.size.toString + '\n')
 
     }
